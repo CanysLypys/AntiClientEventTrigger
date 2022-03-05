@@ -1,5 +1,5 @@
 RegisterNetEvent("foundYa:ban")
-AddEventHandler("foundYa:ban", function(pSrc, grund, extendedData, getResource)
+AddEventHandler("foundYa:ban", function(pSrc, grund, extendedData)
     print("^5[AntiClientEvent]^1 Player detected\n^2Name: ^5"..GetPlayerName(pSrc).."^0 \n"..extendedData)
     AntiBan(pSrc, grund, extendedData)
 end)
