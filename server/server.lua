@@ -1,3 +1,23 @@
+local resourceList = {}
+local allResources = GetNumResources()
+for i = 0, allResources, 1 do
+    local resource_name = GetResourceByFindIndex(i)
+    if resource_name and GetResourceState(resource_name) == "started" then
+        table.insert(resourceList, resource_name)
+    end
+end
+
+
+RegisterNetEvent("foundYa:proceedData")
+AddEventHandler("foundYa:proceedData", function(getResource, clientEvents)
+    for k, v in pairs(resourceList) do
+        if getResource ~= resourceList then
+
+            TriggerEvent("foundYa:ban", source, "Lua Executor detected.", "Resource: "..getResource.."\nClientEvent: "..clientEvents)
+        end
+    end
+end)
+
 RegisterNetEvent("foundYa:ban")
 AddEventHandler("foundYa:ban", function(pSrc, grund, extendedData)
     print("^5[AntiClientEvent]^1 Player detected\n^2Name: ^5"..GetPlayerName(pSrc).."^0 \n"..extendedData)
