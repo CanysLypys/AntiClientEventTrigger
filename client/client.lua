@@ -11,11 +11,7 @@ for k, clientEvents in pairs(Config.ProtectTheseClientEvents) do
     RegisterNetEvent(clientEvents)
     AddEventHandler(clientEvents, function()
         local getResource = GetInvokingResource()
-
-        for k, v in pairs(resourceList) do
-            if getResource ~= resourceList then
-                TriggerServerEvent("foundYa:ban", GetPlayerServerId(PlayerId()), "Lua Executor detected.", "Resource: "..getResource.."\nClientEvent: "..clientEvents)
-            end
-        end
+        
+        TriggerServerEvent("foundYa:proceedData", getResource, clientEvents)
     end)
 end
