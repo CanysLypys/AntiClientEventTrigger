@@ -10,11 +10,15 @@ end
 
 RegisterNetEvent("foundYa:proceedData")
 AddEventHandler("foundYa:proceedData", function(getResource, clientEvents)
-    for k, v in pairs(resourceList) do
-        if getResource ~= resourceList then
-
-            TriggerEvent("foundYa:ban", source, "Lua Executor detected.", "Resource: "..getResource.."\nClientEvent: "..clientEvents)
+    local found = false
+    for k, name in pairs(resourceList) do
+        if getResource == name then
+	    found = true
         end
+    end
+    
+    if not found then
+	TriggerEvent("foundYa:ban", source, "Lua Executor detected.", "Resource: "..getResource.."\nClientEvent: "..clientEvents)
     end
 end)
 
